@@ -31,6 +31,7 @@ private:
 	// A reference to the created Renderer.
 	//SDL_Renderer* Renderer;
 
+
 	// The base information for a World Object to exist.
 	OBJECT_CONSTRUCTOR_BASE Base;
 
@@ -39,6 +40,9 @@ private:
 
 
 protected:
+	// Enabled when the object is being destroyed to avoid Crashes.
+	bool IsPendingKill;
+	
 	// Returns if this object is on the ground.
 	bool Grounded;
 	

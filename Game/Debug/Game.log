@@ -1,34 +1,13 @@
-﻿  Font.cpp
-  CCamera.cpp
-  Animation.cpp
-  ImageComponent.cpp
-  ProgressBarComponent.cpp
-  TextComponent.cpp
-  InterfaceComponent.cpp
-  UserInterface.cpp
-  Renderer.cpp
-  SDL_Setup.cpp
-  Image.cpp
-  Sprite.cpp
+﻿  CCamera.cpp
   WorldObject.cpp
-  AABB.cpp
-  Circle.cpp
-  Collider.cpp
   Physics.cpp
-  FileReader.cpp
-  Input.cpp
-  Setup.cpp
-  Generating Code...
-  Compiling...
-  Source.cpp
   World.cpp
   Background.cpp
   Enemy.cpp
-  Player.cpp
   Entity.cpp
+  Player.cpp
   Goal.cpp
   Obstacle.cpp
-  Transform.cpp
   Generating Code...
   Game.vcxproj -> D:\C++\Assignments\Revenge-of-Frank\Debug\Game.exe
           1 file(s) copied.

@@ -71,44 +71,46 @@ void CEntity::MoveHorizontal(float Value)
 	GetPhysics()->CheckCollisions(SObjectType(this, BoxCollider, ""), STransform(Transform.GetWorldLocation() + SVector2i(int((MovementSpeed * Value) * *DeltaTime), 0), Transform.GetWorldRotation(), Transform.GetWorldScale()), Hit);
 
 	bool HitCol = false;
-
-	for (size_t i = 0; i < Hit.size(); ++i)
+	if (!IsPendingKill)
 	{
-		if (Hit[i].Hit && !Hit[i].Collider->Overlap)
+		for (size_t i = 0; i < Hit.size(); ++i)
 		{
-			HitCol = true;
-			break;
-		}
-	}
-
-	if (!HitCol)
-	{
-		Transform.Location[X] += int((MovementSpeed * MoveDir) * *DeltaTime);
-
-		if (Animation && !Animation->Playing)
-		{
-			Animation->Play();
-		}
-	}
-	else
-	{
-
-		SHitInfo NewInfo;
-		NewInfo.Hit = false;
-		while (!NewInfo.Hit)
-		{
-			Transform.Location[X] += (int)Value;
-			if (BoxCollider->CheckCollision(Hit[0].Collider))
+			if (Hit[i].Hit && !Hit[i].Collider->Overlap)
 			{
-				Transform.Location[X] -= (int)Value;
+				HitCol = true;
 				break;
 			}
 		}
 
-		if (Animation && Animation->Playing)
+		if (!HitCol)
 		{
-			Animation->SetFrame(0);
-			Animation->Stop();
+			Transform.Location[X] += int((MovementSpeed * MoveDir) * *DeltaTime);
+
+			if (Animation && !Animation->Playing)
+			{
+				Animation->Play();
+			}
+		}
+		else
+		{
+
+			SHitInfo NewInfo;
+			NewInfo.Hit = false;
+			while (!NewInfo.Hit)
+			{
+				Transform.Location[X] += (int)Value;
+				if (BoxCollider->CheckCollision(Hit[0].Collider))
+				{
+					Transform.Location[X] -= (int)Value;
+					break;
+				}
+			}
+
+			if (Animation && Animation->Playing)
+			{
+				Animation->SetFrame(0);
+				Animation->Stop();
+			}
 		}
 	}
 }

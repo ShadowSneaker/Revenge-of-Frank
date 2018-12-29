@@ -22,7 +22,7 @@ CWorld::CWorld(CSDL_Setup* Setup)
 	Renderer = new CRenderer(SDL_Setup, Camera);
 
 	UI = new CUserInterface(Renderer);
-
+	
 	FileReader = new CFileReader();
 	if (!LoadLevel("Level1.txt"))
 	{
@@ -129,11 +129,9 @@ Type* CWorld::SpawnObject(SVector2i Location, SVector2 Scale)
 template <typename Type>
 Type* CWorld::SpawnObject(STransform Transform)
 {
-	
 	Type* NewObject = new Type(OBJECT_CONSTRUCTOR_BASE{ Renderer, Physics, this }, Transform);
 	if (NewObject)
 	{
-		//NewObject->SetWorld(this);
 		NewObject->SetDeltaTime(&DeltaTime);
 
 		Objects.push_back(NewObject);
@@ -152,7 +150,6 @@ void CWorld::DestroyObject(CWorldObject* Object)
 	{
 		PossessedObject = nullptr;
 	}
-
 
 	for (size_t i = 0; i < Objects.size(); ++i)
 	{

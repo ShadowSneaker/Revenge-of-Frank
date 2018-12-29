@@ -13,7 +13,7 @@ CWorldObject::CWorldObject(OBJECT_CONSTRUCTOR_BASE InBase, STransform InTransfor
 
 CWorldObject::~CWorldObject() 
 {
-
+	IsPendingKill = true;
 }
 
 
@@ -33,49 +33,51 @@ void CWorldObject::ApplyGravity(CCollider* Collider)
 			return;
 		}
 
-		bool HitCol = false;
-
-		for (size_t i = 0; i < Hit.size(); ++i)
+		if (!IsPendingKill)
 		{
-			if (Hit[i].Hit && !Hit[i].Collider->Overlap)
+			bool HitCol = false;
+
+			for (size_t i = 0; i < Hit.size(); ++i)
 			{
-				HitCol = true;
-				break;
+				if (Hit[i].Hit && !Hit[i].Collider->Overlap)
+				{
+					HitCol = true;
+					break;
+				}
 			}
-		}
 
-		if (!HitCol)
-		{
-			Transform.Location[Y] += int(VelY);
-			Grounded = false;
-		}
-		else
-		{
-			if (Base.Physics->GravityDirection() > 0)
+			if (!HitCol)
 			{
-				if (VelY < 0.0f)
-				{
-					VelY = 0.0f;
-				}
-				else
-				{
-					AdjustLocation(Collider, Hit[0]);
-				}
+				Transform.Location[Y] += int(VelY);
+				Grounded = false;
 			}
 			else
 			{
-				if (VelY > 0.0f)
+				if (Base.Physics->GravityDirection() > 0)
 				{
-
-					VelY = 0.0f;
+					if (VelY < 0.0f)
+					{
+						VelY = 0.0f;
+					}
+					else
+					{
+						AdjustLocation(Collider, Hit[0]);
+					}
 				}
 				else
 				{
-					AdjustLocation(Collider, Hit[0]);
+					if (VelY > 0.0f)
+					{
+
+						VelY = 0.0f;
+					}
+					else
+					{
+						AdjustLocation(Collider, Hit[0]);
+					}
 				}
 			}
 		}
-		
 	}
 }
 
