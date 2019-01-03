@@ -98,50 +98,50 @@ void CWorld::GetDeltaTime()
 }
 
 
-template <typename Type>
-Type* CWorld::SpawnObject()
-{
-	return SpawnObject<Type>(STransform());
-}
-
-
-template <typename Type>
-Type* CWorld::SpawnObject(SVector2i Location)
-{
-	return SpawnObject<Type>(STransform(Location, 0.0f, 1.0f));
-}
-
-
-template <typename Type>
-Type* CWorld::SpawnObject(SVector2i Location, float Rotation)
-{
-	return SpawnObject<Type>(STransform(Location, Rotation, 1.0f));
-}
-
-
-template <typename Type>
-Type* CWorld::SpawnObject(SVector2i Location, SVector2 Scale)
-{
-	return SpawnObject<Type>(STransform(Location, 0.0f, Scale));
-}
-
-
-template <typename Type>
-Type* CWorld::SpawnObject(STransform Transform)
-{
-	Type* NewObject = new Type(OBJECT_CONSTRUCTOR_BASE{ Renderer, Physics, this }, Transform);
-	if (NewObject)
-	{
-		NewObject->SetDeltaTime(&DeltaTime);
-
-		Objects.push_back(NewObject);
-
-		return NewObject;
-	}
-
-	delete NewObject;
-	return nullptr;
-}
+//template <typename Type>
+//Type* CWorld::SpawnObject()
+//{
+//	return SpawnObject<Type>(STransform());
+//}
+//
+//
+//template <typename Type>
+//Type* CWorld::SpawnObject(SVector2i Location)
+//{
+//	return SpawnObject<Type>(STransform(Location, 0.0f, 1.0f));
+//}
+//
+//
+//template <typename Type>
+//Type* CWorld::SpawnObject(SVector2i Location, float Rotation)
+//{
+//	return SpawnObject<Type>(STransform(Location, Rotation, 1.0f));
+//}
+//
+//
+//template <typename Type>
+//Type* CWorld::SpawnObject(SVector2i Location, SVector2 Scale)
+//{
+//	return SpawnObject<Type>(STransform(Location, 0.0f, Scale));
+//}
+//
+//
+//template <typename Type>
+//Type* CWorld::SpawnObject(STransform Transform)
+//{
+//	Type* NewObject = new Type(OBJECT_CONSTRUCTOR_BASE{ Renderer, Physics, this }, Transform);
+//	if (NewObject)
+//	{
+//		NewObject->SetDeltaTime(&DeltaTime);
+//
+//		Objects.push_back(NewObject);
+//
+//		return NewObject;
+//	}
+//
+//	delete NewObject;
+//	return nullptr;
+//}
 
 
 void CWorld::DestroyObject(CWorldObject* Object)
@@ -157,6 +157,7 @@ void CWorld::DestroyObject(CWorldObject* Object)
 		{
 			delete Objects[i];
 			Objects.erase(Objects.begin() + i);
+			return;
 		}
 	}
 }

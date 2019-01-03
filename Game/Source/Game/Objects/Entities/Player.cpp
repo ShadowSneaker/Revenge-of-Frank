@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "../../../Core/Graphics/Interface/Components/ProgressBarComponent.h"
 #include "../../../Core/World/World.h"
+#include "Abilities/Projectile.h"
 
 
 CPlayer::CPlayer(OBJECT_CONSTRUCTOR_BASE Base, STransform InTransform)
@@ -16,8 +17,9 @@ CPlayer::CPlayer(OBJECT_CONSTRUCTOR_BASE Base, STransform InTransform)
 	BoxCollider->Extents = Animation->GetCellSize();
 
 	Transform.Scale = 2.0f;
+	Damage = 20.0f;
 
-
+	MaxFireCD = 0.5f;
 
 	HealthBar = GetWorld()->GetUI()->AddComponent<CProgressBarComponent>(10);
 	HealthBar->Transform.Scale = SVector2(1.0f, 0.25f);
@@ -43,6 +45,11 @@ void CPlayer::Update()
 {
 	CEntity::Update();
 
+
+	if (FireCD > 0.0f)
+	{
+		FireCD -= *DeltaTime;
+	}
 }
 
 
@@ -72,6 +79,14 @@ void CPlayer::ReadInput(CInput* Key)
 		}
 	}
 
+	if (Key->KeyIsPressed(KEY_F))
+	{
+		if (FireCD <= 0.0f)
+		{
+			Fire();
+		}
+	}
+
 	if (Key->KeyIsPressed(KEY_G))
 	{
 		if (CanReverse)
@@ -94,4 +109,16 @@ float CPlayer::ApplyDamage(float Damage)
 	CEntity::ApplyDamage(Damage);
 	HealthBar->Value = Health;
 	return Health;
+}
+
+
+void CPlayer::Fire()
+{
+	FireCD = MaxFireCD;
+
+	CProjectile* Spawned = GetWorld()->SpawnObject<CProjectile>(Transform.GetWorldLocation() + Animation->GetCellCenter());
+	Spawned->Owner = this;
+	Spawned->GetImage()->FlipX = GetAnimation()->FlipX;
+	Spawned->GetImage()->FlipY = GetAnimation()->FlipY;
+	Spawned->Damage = Damage;
 }

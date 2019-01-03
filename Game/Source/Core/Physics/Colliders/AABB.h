@@ -2,21 +2,37 @@
 #include "Collider.h"
 
 
+// A Axis Aligned Bounding Box.
 class CAABB :public CCollider
 {
 public:
+	/// Components
 
+	// The furthest X and Y extents of this collider.
 	SVector2i Extents;
 
-
+	// The scale of this collider.
 	SVector2 Scale;
 
-	bool Debug = true;
 public:
+	/// Constructors
+
+	// Constructor, Default.
 	CAABB();
 
+	// Constructor, Initiates the AABB at a specific transform.
+	// @param Transform - The parent transform.
 	CAABB(STransform* Transform);
+
+	// Constructor, Initiates the AABB at a specific transform with default extents.
+	// @param Transform - The parent transform.
+	// @param InExtents - How large the AABB is in width/height.
 	CAABB(STransform* Transform, SVector2i InExtents);
+
+	// Constructor, Initiates the AABB at a specific transform with default extents.
+	// @param Transform - The parent transform.
+	// @param Location - the location this AABB will be created at.
+	// @param InExtents - How large the AABB is in width/height.
 	CAABB(STransform* Transform, SVector2i Location, SVector2i InExtents);
 
 
@@ -28,6 +44,8 @@ public:
 	// Test collision between this (AABB) and a Circle Collider.
 	virtual bool CheckCollision(const class CCircle* Other) const override;
 
+	// Test collision between this (AABB) and an Ambiguous Collider.
+	// This will find the collider type of the other collider and use the appropriate collisition detection.
 	bool CheckCollision(const CCollider* Other) const;
 
 

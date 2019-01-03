@@ -3,45 +3,41 @@
 #include "../Physics/Physics.h"
 #include "../Graphics/Renderer/Renderer.h"
 
-//class CRenderer;
-//class CPhysics;
 
-
+// The base information that is required to create an object.
 struct OBJECT_CONSTRUCTOR_BASE
 {
-	// Reference to the Renderer
+	/// Components
+
+	// A reference to the Renderer
 	CRenderer* Renderer;
 
+	// A reference to the physics.
 	CPhysics* Physics;
 
+	// A reference to the world this object belongs to.
 	class CWorld* World;
 
+	/// Constructors
 
+	// Constructor, Initiates the object constructor.
 	OBJECT_CONSTRUCTOR_BASE(CRenderer* InRenderer, CPhysics* InPhysics, class CWorld* InWorld)
 		:Renderer{ InRenderer }, Physics{ InPhysics }, World{ InWorld }
 	{}
 };
 
 
+// The base object that can exist in the world.
 class CWorldObject
 {
 private:
 	/// Properties
 
-	// A reference to the created Renderer.
-	//SDL_Renderer* Renderer;
-
-
 	// The base information for a World Object to exist.
 	OBJECT_CONSTRUCTOR_BASE Base;
 
-	// A stored reference of the world.
-	//class CWorld* World;
-
 
 protected:
-	// Enabled when the object is being destroyed to avoid Crashes.
-	bool IsPendingKill;
 	
 	// Returns if this object is on the ground.
 	bool Grounded;
@@ -53,6 +49,9 @@ protected:
 	float VelY;
 
 public:
+	// Enabled when the object is being destroyed to avoid Crashes.
+	bool IsPendingKill;
+	
 	// Enables/Disables this object.
 	bool Active;
 	
@@ -72,7 +71,9 @@ public:
 	// Constructor, Initiates the WorldObject with the vital info.
 	CWorldObject(OBJECT_CONSTRUCTOR_BASE InBase, STransform InTransform);
 
+	// Destructor - Virtual so child objects can overwrite it and propperly delete their pointers.
 	virtual ~CWorldObject();
+
 
 	/// Functions
 
@@ -83,12 +84,14 @@ public:
 	void ApplyGravity(class CCollider* Collider);
 
 private:
+	// Adjusts the location of the object until they are no longer colliding.
 	void AdjustLocation(class CCollider* Collider, SHitInfo Hit);
 public:
 
+	// Function that is called whenever a collision has occured.
 	virtual void OnCollision(SHitInfo Info, std::string Tag) {}
 
-
+	// Function that is called whenever a overlap collision has occured.
 	virtual void OnOverlap(SHitInfo Info, std::string Tag) {}
 
 
@@ -97,9 +100,7 @@ public:
 	// Sets a reference to the calculated value of delta time.
 	inline void SetDeltaTime(float* DT) { DeltaTime = DT; }
 
-	// Sets a reference to the world.
-	//inline void SetWorld(class CWorld* InWorld) { World = InWorld; }
-
+	// Applies damage to this object.
 	virtual float ApplyDamage(const float Damage) { return 0.0f; }
 
 

@@ -2,7 +2,7 @@
 #include "../../../Math/Transform.h"
 
 
-
+// The type of collider the object is.
 enum EColliderType
 {
 	Box,
@@ -12,16 +12,21 @@ enum EColliderType
 };
 
 
+// The info that is recieved when an object collides with another.
 struct SHitInfo
 {
+	// A reference to the object that this object collided with.
 	class CWorldObject* HitObject;
 
+	// A reference to the collider this object collided with.
 	class CCollider* Collider;
 
+	// a value determining if this object hit another.
 	bool Hit;
 };
 
 
+// The base collider type used to qurry collisions against other colliders.
 class CCollider
 {
 protected:
@@ -74,6 +79,7 @@ public:
 	// Sets the owner transform of this collider.
 	inline void SetOwner(STransform* Transform) { Owner = Transform; }
 
+	// Sets the type of collider this collider is.
 	inline void SetType(EColliderType NewType) { Type = NewType; }
 
 	/// Getters
@@ -81,6 +87,7 @@ public:
 	// Gets the type of collider this collider is.
 	inline EColliderType GetType() const { return Type; }
 
+	// Returns the world location of this collider.
 	inline SVector2i GetWorldLocation() const { return Location + ((Owner) ? Owner->GetWorldLocation() : 0); }
 
 };

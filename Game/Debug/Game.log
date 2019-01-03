@@ -1,14 +1,4 @@
-﻿  CCamera.cpp
-  WorldObject.cpp
-  Physics.cpp
-  World.cpp
-  Background.cpp
-  Enemy.cpp
-  Entity.cpp
-  Player.cpp
-  Goal.cpp
-  Obstacle.cpp
-  Generating Code...
+﻿  Player.cpp
   Game.vcxproj -> D:\C++\Assignments\Revenge-of-Frank\Debug\Game.exe
           1 file(s) copied.
           1 file(s) copied.

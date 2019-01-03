@@ -46,7 +46,7 @@ const std::vector<SHitInfo> CPhysics::CheckCollisions(SObjectType Object, STrans
 
 	for (size_t i = 0; i < Objects.size(); ++i)
 	{
-		if (Objects[i].Object)
+		if (Objects[i].Object && !Objects[i].Object->IsPendingKill)
 		{
 			// Skip this collider if it is the same as the inputted collider
 			if (IgnoreSelf && Object.Object == Objects[i].Object)
@@ -70,7 +70,7 @@ const std::vector<SHitInfo> CPhysics::CheckCollisions(SObjectType Object, STrans
 				
 				ColliderInfo.Hit = true;
 
-				if (Info.Collider->Overlap)
+				if (Info.Collider->Overlap && !Info.HitObject->IsPendingKill)
 				{
 					Object.Object->OnOverlap(Info, Object.Tag);
 					if (Objects[i].Object && Objects[i].Collider)

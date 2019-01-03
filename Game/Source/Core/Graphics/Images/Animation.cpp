@@ -194,7 +194,7 @@ void CAnimation::SetAnimation(std::string InFilePath, size_t Columns, size_t Row
 inline const SVector2i CAnimation::GetCellCenter()
 {
 	SVector2i Result;
-	Result[X] = int(CellSize[X] * Transform.GetWorldScale()[X]) / 2;
-	Result[Y] = int(CellSize[Y] * Transform.GetWorldScale()[Y]) / 2;
+	Result[X] = int(GetCellSize()[X] * Transform.GetWorldScale()[X]) / 2;
+	Result[Y] = int(GetCellSize()[Y] * Transform.GetWorldScale()[Y]) / 2;
 	return Result;
 }

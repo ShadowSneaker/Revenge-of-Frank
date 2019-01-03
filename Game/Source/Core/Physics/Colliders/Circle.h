@@ -2,6 +2,7 @@
 #include "Collider.h"
 
 
+// A circle collider.
 class CCircle :public CCollider
 {
 private:

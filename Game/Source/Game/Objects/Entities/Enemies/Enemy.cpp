@@ -8,6 +8,8 @@ CEnemy::CEnemy(OBJECT_CONSTRUCTOR_BASE Base, STransform InTransform)
 	:CEntity::CEntity{ Base, InTransform }
 {
 	MovementSpeed = 400.0f;
+
+	ImmunityFrames = 0.1f;
 	
 	Animation->SetAnimation("MiniFrank.bmp", 1, 1);
 	BoxCollider->Extents = Animation->GetCellSize();
@@ -17,7 +19,7 @@ CEnemy::CEnemy(OBJECT_CONSTRUCTOR_BASE Base, STransform InTransform)
 	CircleCollider->Overlap = true;
 	GetPhysics()->AddCollider(SObjectType(this, CircleCollider, "Agro"));
 
-	AttackRange = new CCircle(&Transform, Animation->GetCellCenter(), 5.0f);
+	AttackRange = new CCircle(&Transform, Animation->GetCellCenter(), 1.0f);
 	AttackRange->Overlap = true;
 	GetPhysics()->AddCollider(SObjectType(this, CircleCollider, "Range"));// , &CEntity::AgroRange));
 	Transform.Scale = 0.25f;
@@ -43,7 +45,7 @@ void CEnemy::Update()
 	{
 	
 		// Basic AI.
-		if (IsAgro)
+		if (IsAgro && !IsPendingKill)
 		{
 			int Val1 = Transform.GetWorldLocation()[X] + GetAnimation()->GetCellCenter()[X];
 			int Val2 = PlayerRef->Transform.GetWorldLocation()[X] + PlayerRef->GetAnimation()->GetCellCenter()[X];
@@ -73,10 +75,13 @@ void CEnemy::Update()
 			}
 			else
 			{
-				GetAnimation()->FlipY = false;
-				if (PlayerRef->Transform.Location[Y] + PlayerRef->GetAnimation()->GetCellSize()[Y] < Transform.Location[Y])
+				if (!IsPendingKill)
 				{
-					Jump();
+					GetAnimation()->FlipY = false;
+					if (PlayerRef->Transform.Location[Y] + PlayerRef->GetAnimation()->GetCellSize()[Y] < Transform.Location[Y])
+					{
+						Jump();
+					}
 				}
 			}
 		}
@@ -99,6 +104,7 @@ void CEnemy::OnOverlap(SHitInfo Info, std::string Tag)
 		}
 		else if (Tag == "Range")
 		{
+			// Box to circle collisions still don't work propperly, the radius is ignored.
 			if (Info.HitObject->ApplyDamage(Damage) <= 0.0f)
 			{
 				PlayerRef = nullptr;

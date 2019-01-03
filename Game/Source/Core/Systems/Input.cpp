@@ -43,6 +43,10 @@ void CInput::Update()
 			case SDLK_g:
 				KeysPressed[KEY_G] = true;
 				break;
+
+			case SDLK_f:
+				KeysPressed[KEY_F] = true;
+				break;
 			}
 		}
 		else if (Event->type == SDL_KEYUP)
@@ -65,6 +69,10 @@ void CInput::Update()
 
 			case SDLK_g:
 				KeysPressed[KEY_G] = false;
+				break;
+
+			case SDLK_f:
+				KeysPressed[KEY_F] = false;
 				break;
 			}
 		}

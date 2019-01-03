@@ -26,12 +26,19 @@ CCircle::CCircle(STransform* Transform, SVector2i Center, float SetRadius)
 
 bool CCircle::CheckCollision(const class CAABB* Other) const
 {
-	SVector2 Delta;
-	SVector2 Dist = (Other->GetMinExtent() + Other->GetMaxExtent());
+	SVector2i Dist;
+	Dist[X] = abs(GetWorldLocation()[X] - Other->GetWorldLocation()[X]);
+	Dist[Y] = abs(GetWorldLocation()[Y] - Other->GetWorldLocation()[Y]);
 
-	Delta = GetCenter().ToFloat() - (Other->GetMinExtent().Max(GetCenter().ToFloat().Min(Dist)));
+	if (Dist[X] > (Other->GetMaxExtent()[X] / 2 + GetRadius())) { return false; }
+	if (Dist[Y] > (Other->GetMaxExtent()[Y] / 2 + GetRadius())) { return false; }
 
-	return ((Delta[X] * Delta[X]) + (Delta[Y] * Delta[Y]) < (GetRadius() * GetRadius()));
+	if (Dist[X] <= (Other->GetMaxExtent()[X] / 2)) { return true; }
+	if (Dist[Y] <= (Other->GetMaxExtent()[Y] / 2)) { return true; }
+
+	float CornerDist = Power(Dist[X] - Other->GetMaxExtent()[X] / 2, 2) + Power(Dist[Y] - Other->GetMaxExtent()[Y] / 2, 2);
+
+	return (CornerDist <= GetRadius());
 }
 
 

@@ -5,6 +5,7 @@
 #include <string>
 
 
+// The mode in which the windows will be created.
 enum EWindowMode
 {
 	WindowPlayer,
@@ -41,7 +42,11 @@ public:
 
 public:
 	/// Constructors
+
+	// Constructor, Default.
 	CSDL_Setup() {}
+
+	// Destructor.
 	~CSDL_Setup();
 
 
@@ -50,7 +55,7 @@ public:
 	// Creates the window and renderer.
 	bool Init();
 
-
+	// Creates the Window that pops up.
 	bool CreateDisplay();
 
 

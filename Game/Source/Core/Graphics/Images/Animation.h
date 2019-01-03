@@ -2,11 +2,9 @@
 #include "Sprite.h"
 
 
-// Add loop boolean variable.
-// If looping is false only play through once (if playing is set to true).
-// if Looping is true, continuously play the animation.
-
-
+// Animation is a large image that is cut into columns and rows.
+// Each column represents a animation and this class will display each cell in that column.
+// Each row represents different animations that can be played.
 class CAnimation :public CSprite
 {
 private:
@@ -109,5 +107,6 @@ public:
 	// Gets how large each cell is (in pixels).
 	inline SVector2i GetCellSize() { return SVector2i{ Cell.w, Cell.h }; }
 
+	// Returns the position of the center of the displayed cell.
 	inline const SVector2i GetCellCenter();
 };

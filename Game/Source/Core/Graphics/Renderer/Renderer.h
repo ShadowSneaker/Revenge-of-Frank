@@ -18,6 +18,7 @@ private:
 	// A list of all the images that should be drawn to the screen.
 	std::vector<CImage*> Images;
 
+	// A reference to the camera.
 	CCamera* Camera;
 
 
@@ -86,6 +87,8 @@ public:
 	}
 
 
+	// Destroys a specified image on the screen.
+	// @param Image - The image reference that should be destroyed.
 	void DestroyImage(CImage* Image);
 
 
@@ -93,10 +96,14 @@ public:
 
 
 	/// Getters
+
+	// Returns a reference to the renderer.
 	SDL_Renderer* GetRenderer() const { return Setup->GetRenderer(); }
 
+	// Returns a reference to the window.
 	SDL_Window* GetWindow() const { return Setup->GetWindow(); }
 
+	// Returns the size of the window in pixels.
 	SVector2i GetScreenSize() const { return Setup->WindowSize; }
 
 };

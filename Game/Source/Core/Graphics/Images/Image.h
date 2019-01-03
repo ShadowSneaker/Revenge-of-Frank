@@ -2,21 +2,19 @@
 #include "../../../Math/Transform.h"
 
 
+// A base image that can be drawn on the screen.
 class CImage
 {
 private:
 	/// Properties
 
-
-
-
 	// A reference to the renderer so this sprite can be drawn.
 	SDL_Renderer* Renderer;
 
-
+	// The flip flags used to determine what way the font should be drawn.
 	Uint32 Flip;
 
-	
+	// The multiplied colour ontop of this image.
 	SDL_Color Colour;
 
 protected:
@@ -43,13 +41,13 @@ public:
 	// what order this image should be drawn.
 	int ZOrder;
 
-
+	// Should this image be drawn on the screen.
 	bool Enable;
 
-
+	// Should this image be flipped in the X direction.
 	bool FlipX;
 
-
+	// Should this image be flipped in the Y direction.
 	bool FlipY;
 
 
@@ -77,7 +75,8 @@ public:
 
 
 protected:
-
+	// Incomplete
+	// Moves the object to follow the rotation of its parent.
 	SVector2i RotateAroundParent(SVector2i ImageCenter);
 
 public:
@@ -104,12 +103,16 @@ public:
 	inline SDL_Color GetColour() const { return Colour; }
 
 protected:
+	// Returns the flipped flags this object has enabled.
 	inline SDL_RendererFlip GetFlip();
 
+	// Returns the renderer.
 	inline SDL_Renderer* GetRenderer() const { return Renderer; }
 
+	// Returns the texture used to draw the image.
 	inline SDL_Texture* GetTexture() const { return Texture; }
 
+	// Returns the surface used to create the image.
 	inline SDL_Surface* GetSurface() const { return Surface; }
 
 	// Gets the center point of this image.
@@ -117,6 +120,7 @@ protected:
 };
 
 
+// Used to short the Image's ZOrder to draw infront of behind other images.
 struct IMAGE_ZORDER
 {
 	inline bool operator()(const CImage* ImgA, const CImage* ImgB)

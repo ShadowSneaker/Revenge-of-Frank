@@ -3,6 +3,7 @@
 #include "../World/World.h"
 
 
+// Setups the base information for the window and program.
 class CSetup
 {
 private:
@@ -17,7 +18,10 @@ private:
 public:
 	/// Constructors
 
+	// Constructor, Default
 	CSetup();
+
+	// Destructor
 	~CSetup();
 
 	/// Functions

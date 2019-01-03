@@ -3,24 +3,34 @@
 
 #include <vector>
 
-
+// Forward Declared World Object.
 class CWorldObject;
 
 
+// The info used to store a collider.
 struct SObjectType
 {
 public:
+	/// Propperties
+
+	// A reference to the object that owns the collider.
 	CWorldObject* Object;
+
+	// A reference to the collider that the object owns.
 	CCollider* Collider;
+
+	// A tag for the collider to be returned when the object is collided with.
 	std::string Tag;
 
 
 	/// Constructors.
 
+	// Constructor, Default.
 	SObjectType()
 		:Object{ nullptr }, Collider{ nullptr }
 	{}
 
+	// Constructor, Initiates the ObjectType.
 	SObjectType(CWorldObject* InObject, CCollider* InCollider, std::string FunctionTag)
 		:Object{ InObject }, Collider{ InCollider }, Tag{ FunctionTag }
 	{}
@@ -32,18 +42,20 @@ class CPhysics
 private:
 	/// Properties
 
+	// A list of all the colliders in the level.
 	std::vector<SObjectType> Objects;
 
+	// A reference to the delta time.
 	float* DeltaTime;
 
-	
-
 public:
+	// The gravity value.
 	float Gravity;
 
 public:
 	/// Constructors
 
+	// Constructor, Default.
 	CPhysics();
 
 
@@ -70,16 +82,20 @@ public:
 	// Adds a collider to the list.
 	void AddCollider(SObjectType Object) { Objects.push_back(Object); }
 
+	// Removes a collider from the list.
+	// @param - A reference to the collider to be destroyed.
 	void DestroyCollider(CCollider* Collider);
 
 
 	/// Setters
 
+	// Sets the reference for delta time.
 	inline void SetDeltaTime(float* DT) { DeltaTime = DT; }
 
 
 	/// Getters
 
+	// Returns the gravity direction.
+	// 1 for up -1 for down.
 	inline int GravityDirection() const { return (Gravity < 0.0f) ? 1 : -1; }
-
 };

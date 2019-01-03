@@ -166,6 +166,7 @@ copy "$(SolutionDir)\Libraries\SDL2_ttf-2.0.12\lib\x86\zlib1.dll" "$(TargetDir)"
     <ClInclude Include="Source\Core\Systems\Setup.h" />
     <ClInclude Include="Source\Core\World\World.h" />
     <ClInclude Include="Source\Game\Objects\Background.h" />
+    <ClInclude Include="Source\Game\Objects\Entities\Abilities\Projectile.h" />
     <ClInclude Include="Source\Game\Objects\Entities\Enemies\Enemy.h" />
     <ClInclude Include="Source\Game\Objects\Entities\Entity.h" />
     <ClInclude Include="Source\Game\Objects\Entities\Player.h" />
@@ -181,7 +182,7 @@ copy "$(SolutionDir)\Libraries\SDL2_ttf-2.0.12\lib\x86\zlib1.dll" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Containers\Font.cpp" />
-    <ClCompile Include="Source\Core\Graphics\CCamera.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Camera.cpp" />
     <ClCompile Include="Source\Core\Graphics\Images\Animation.cpp" />
     <ClCompile Include="Source\Core\Graphics\Interface\Components\ImageComponent.cpp" />
     <ClCompile Include="Source\Core\Graphics\Interface\Components\ProgressBarComponent.cpp" />
@@ -203,6 +204,7 @@ copy "$(SolutionDir)\Libraries\SDL2_ttf-2.0.12\lib\x86\zlib1.dll" "$(TargetDir)"
     <ClCompile Include="Source\Core\Systems\Source.cpp" />
     <ClCompile Include="Source\Core\World\World.cpp" />
     <ClCompile Include="Source\Game\Objects\Background.cpp" />
+    <ClCompile Include="Source\Game\Objects\Entities\Abilities\Projectile.cpp" />
     <ClCompile Include="Source\Game\Objects\Entities\Enemies\Enemy.cpp" />
     <ClCompile Include="Source\Game\Objects\Entities\Player.cpp" />
     <ClCompile Include="Source\Game\Objects\Entities\Entity.cpp" />

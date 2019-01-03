@@ -1,5 +1,8 @@
 #include "AABB.h"
 #include "Circle.h"
+#include "../../../Math/MathStatics.h"
+
+#include <math.h>
 
 
 CAABB::CAABB()
@@ -54,12 +57,19 @@ bool CAABB::CheckCollision(const CAABB* Other) const
 
 bool CAABB::CheckCollision(const class CCircle* Other) const
 {
-	SVector2 Delta;
-	SVector2 Dist = (GetMinExtent() + GetMaxExtent().ToFloat());
+	SVector2i Dist;
+	Dist[X] = abs(Other->GetWorldLocation()[X] - GetWorldLocation()[X]);
+	Dist[Y] = abs(Other->GetWorldLocation()[Y] - GetWorldLocation()[Y]);
 
-	Delta = Other->GetCenter().ToFloat() - (GetMinExtent().Max(Other->GetCenter().ToFloat().Min(Dist.ToFloat())));
+	if (Dist[X] > (GetMaxExtent()[X] / 2 + Other->GetRadius())) { return false; }
+	if (Dist[Y] > (GetMaxExtent()[Y] / 2 + Other->GetRadius())) { return false; }
 
-	return ((Delta[X] * Delta[X]) + (Delta[Y] * Delta[Y]) < (Other->GetRadius() * Other->GetRadius()));	
+	if (Dist[X] <= (GetMaxExtent()[X] / 2)) { return true; }
+	if (Dist[Y] <= (GetMaxExtent()[Y] / 2)) { return true; }
+
+	float CornerDist = Power(Dist[X] - GetMaxExtent()[X] / 2, 2) + Power(Dist[Y] - GetMaxExtent()[Y] / 2, 2);
+
+	return (CornerDist <= Other->GetRadius());
 }
 
 

@@ -49,3 +49,14 @@ static bool NearlyEqual(int Val1, int Val2, int Range)
 {
 	return ((Val1 >= Val2 - Range) && (Val1 <= Val2 + Range));
 }
+
+
+static float Power(float Val, size_t Exp)
+{
+	float Result = Val;
+	for (size_t i = 0; i < Exp; ++i)
+	{
+		Result *= Val;
+	}
+	return Result;
+}
