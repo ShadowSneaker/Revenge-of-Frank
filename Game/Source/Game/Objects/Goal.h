@@ -14,7 +14,7 @@ private:
 	// The collider the player must collide with in order to beat the level.
 	class CAABB* BoxCollider;
 
-	// The Determines if the player has won.
+	// Determines if the player has won.
 	bool Won;
 
 public:

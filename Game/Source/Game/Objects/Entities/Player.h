@@ -14,8 +14,10 @@ private:
 	// A reference to a progress bar on the UI representing as the player's healthbar.
 	class CProgressBarComponent* HealthBar;
 
+	// The current cooldown on the user's fire ability.
 	float FireCD;
 
+	// The cooldown on the user's fire ability.
 	float MaxFireCD;
 
 
@@ -32,7 +34,7 @@ public:
 
 	/// Functions
 
-	// Reads the users inputs to controll the entity.
+	// Reads the users inputs to control the entity.
 	virtual void ReadInput(CInput* Input) override;
 
 	// Runs every frame.
@@ -42,6 +44,7 @@ public:
 	// @return - returns how much HP the entity has left after the damage.
 	virtual float ApplyDamage(float Damage) override;
 
+	// Fires a projectile in the direction the player is facing.
 	void Fire();
 
 	/// Setters

@@ -2,6 +2,7 @@
 #include "../../../../Core/Objects/WorldObject.h"
 
 
+// A object that flies in a single direction and applies damage to the first entity it hits.
 class CProjectile : public CWorldObject
 {
 private:

@@ -37,6 +37,7 @@ public:
 };
 
 
+// The handler for all collision detection.
 class CPhysics
 {
 private:

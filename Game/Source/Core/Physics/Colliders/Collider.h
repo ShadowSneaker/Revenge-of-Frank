@@ -26,7 +26,7 @@ struct SHitInfo
 };
 
 
-// The base collider type used to qurry collisions against other colliders.
+// The base collider type used to quarry collisions against other colliders.
 class CCollider
 {
 protected:
@@ -54,7 +54,7 @@ public:
 	// Constructor, Initiates the collider with an owner.
 	CCollider(STransform* Transform);
 
-	// Constructor, INitiates the collider with an owner and a location.
+	// Constructor, Initiates the collider with an owner and a location.
 	CCollider(STransform* Transform, SVector2i InLocation);
 
 
@@ -70,7 +70,7 @@ public:
 	// @return - Returns true if the colliders are colliding.
 	virtual bool CheckCollision(const class CCircle* Other) const { return false; }
 
-	// Ambigous collision check. Casts down to correct collider to check for collision.
+	// Ambiguous collision check. Casts down to correct collider to check for collision.
 	bool CheckCollision(const CCollider* Other) const;
 
 

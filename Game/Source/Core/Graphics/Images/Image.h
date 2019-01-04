@@ -8,17 +8,17 @@ class CImage
 private:
 	/// Properties
 
-	// A reference to the renderer so this sprite can be drawn.
+	// A reference to the renderer so this Image can be drawn.
 	SDL_Renderer* Renderer;
 
-	// The flip flags used to determine what way the font should be drawn.
+	// The flip flags used to determine what way the image should be drawn.
 	Uint32 Flip;
 
-	// The multiplied colour ontop of this image.
+	// The multiplied colour on top of this image.
 	SDL_Color Colour;
 
 protected:
-	// The surface used to create the sprite.
+	// The surface used to create the image.
 	SDL_Surface* Surface;
 
 	// The Texture that is drawn to the screen.
@@ -35,7 +35,7 @@ protected:
 
 
 public:
-	// The location, rotation and scale of this object.
+	// The location, rotation and scale of this image.
 	STransform Transform;
 	
 	// what order this image should be drawn.
@@ -55,7 +55,7 @@ public:
 public:
 	/// Constructors
 
-	// Default constructor, Creates a sprite that can be drawn on the screen.
+	// Default constructor, Creates a image that can be drawn on the screen.
 	CImage(SDL_Renderer* InRenderer);
 
 	// Constructor, Creates a image that can be drawn to the screen and sets an image to be displayed

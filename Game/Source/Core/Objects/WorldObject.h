@@ -88,10 +88,10 @@ private:
 	void AdjustLocation(class CCollider* Collider, SHitInfo Hit);
 public:
 
-	// Function that is called whenever a collision has occured.
+	// Function that is called whenever a collision has occurred.
 	virtual void OnCollision(SHitInfo Info, std::string Tag) {}
 
-	// Function that is called whenever a overlap collision has occured.
+	// Function that is called whenever a overlap collision has occurred.
 	virtual void OnOverlap(SHitInfo Info, std::string Tag) {}
 
 
@@ -118,6 +118,6 @@ public:
 	// Returns if this object is on the ground.
 	inline bool OnGround() { return Grounded; }
 
-	// Compares the tag of this object with an inputted object;
+	// Compares the tag of this object with an inputted object's tag.
 	inline bool CompareTag(std::string InTag) const { return (Tag == InTag); }
 };

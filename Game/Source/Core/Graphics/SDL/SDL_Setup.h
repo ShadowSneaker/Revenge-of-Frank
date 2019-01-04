@@ -15,6 +15,7 @@ enum EWindowMode
 };
 
 
+// Used to setup SDL.
 class CSDL_Setup
 {
 private:
@@ -33,7 +34,7 @@ public:
 	// What type of window should be created.
 	EWindowMode WindowMode;
 
-	// The name of the window begine created.
+	// The name of the window created.
 	std::string WindowName;
 
 	// The size of the window.

@@ -1,17 +1,16 @@
 #pragma once
 #include "Vector.h"
 
-// Stores the base information for an object to be in a position in the world.
+// Stores the location, rotation and scale of an object in the world.
 struct STransform
 {
 private:
 	/// Properties
 
 	// The parent's transform, used to get worldspace.
-	// Possible issue with this, If the parent is destroyed but the child remains then
-	// this will reference memory that doesn't exist anymore.
 	STransform* Parent;
 
+	// A reference to this transform's child - should be an array/vector.
 	STransform* Child;
 
 public:
@@ -56,6 +55,7 @@ public:
 	// This object's scale in worldspace.
 	SVector2 GetWorldScale() { return Scale * ((Parent) ? Parent->GetWorldScale() : 1.0f); }
 
+	// Returns this object's parent transform reference.
 	STransform* GetParent() const { return Parent; }
 	
 	/// Setters

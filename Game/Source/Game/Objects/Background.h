@@ -2,7 +2,7 @@
 #include "../../Core/Objects/WorldObject.h"
 
 
-// Simply an image attached to a world object.
+// Simply an image attached to a world object with low ZOrder.
 class CBackground :public CWorldObject
 {
 private:

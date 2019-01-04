@@ -1,7 +1,4 @@
 #pragma once
-
-
-
 #include <iostream>
 #include <SDL.h>
 
@@ -72,7 +69,7 @@ public:
 		}
 	}
 
-	// Constructor, Initializes a Vector4 using 4 Value.
+	// Constructor, Initializes a Vector4 using 4 Values.
 	Vector<Size, Element>(Element InX, Element InY, Element InZ, Element InW)
 	{
 		if (Size == 4)
@@ -157,10 +154,10 @@ public:
 
 	/// Operators
 
-	// Operator, Returns the result between an addition between this Vector and another Vector.
+	// Operator, Returns the result of an addition between this Vector and another Vector.
 	inline Vector<Size, Element> operator+(const Vector<Size, Element>& V) const;
 
-	// Operator, Returns the result between an addition between this Vector and a Element Value.
+	// Operator, Returns the result of an addition between this Vector and a Element Value.
 	inline Vector<Size, Element> operator+(const Element& E) const;
 
 	// Operator, Sets this Vectors values with the result of an addition between this Vector and another Vector.
@@ -169,10 +166,10 @@ public:
 	// Operator, Sets this Vectors values with the result of an addition between this Vector and a Element Value.
 	inline Vector<Size, Element> operator+=(const Element& E);
 
-	// Operator, Returns the result between a subtraction between this Vector and another Vector.
+	// Operator, Returns the result of a subtraction between this Vector and another Vector.
 	inline Vector<Size, Element> operator-(const Vector<Size, Element>& V) const;
 
-	// Operator, Returns the result between a subtraction between this Vector and a Element Value.
+	// Operator, Returns the result of a subtraction between this Vector and a Element Value.
 	inline Vector<Size, Element> operator-(const Element& E) const;
 
 	// Operator, Sets this Vectors values with the result of a subtraction between this Vector and another Vector.
@@ -181,10 +178,10 @@ public:
 	// Operator, Sets this Vectors values with the result of a subtraction between this Vector and another Vector.
 	inline Vector<Size, Element> operator-=(const Element& E);
 
-	// Operator, Returns the result between a multiplication between this Vector and another Vector.
+	// Operator, Returns the result of a multiplication between this Vector and another Vector.
 	inline Vector<Size, Element> operator*(const Vector<Size, Element>& V) const;
 
-	// Operator, Returns the result between a multiplication between this Vector and another Vector.
+	// Operator, Returns the result of a multiplication between this Vector and another Vector.
 	inline Vector<Size, Element> operator*(const Element& E) const;
 
 	// Operator, Sets this Vectors values with the result of a multiplication between this Vector and another Vector.
@@ -193,10 +190,10 @@ public:
 	// Operator, Sets this Vectors values with the result of a multiplication between this Vector and another Vector.
 	inline Vector<Size, Element> operator*=(const Element& E);
 
-	// Operator, Returns the result between a division between this Vector and another Vector.
+	// Operator, Returns the result of a division between this Vector and another Vector.
 	inline Vector<Size, Element> operator/(const Vector<Size, Element>& V) const;
 
-	// Operator, Returns the result between a division between this Vector and another Vector.
+	// Operator, Returns the result of a division between this Vector and another Vector.
 	inline Vector<Size, Element> operator/(const Element& E) const;
 
 	// Operator, Sets this Vectors values with the result of a division between this Vector and another Vector. 
@@ -256,10 +253,10 @@ public:
 	// Operator, Test if all components of this Vector is not equal to an Element Value.
 	inline bool operator!=(const Element& E) const;
 
-	// Operator, gets an element from the Vector based off an input.
+	// Operator, Gets an element from the Vector based off an input.
 	inline Element& operator[](const size_t Component);
 
-	// Operator, gets an element from the Vector based off an input.
+	// Operator, Gets an element from the Vector based off an input.
 	inline Element operator[](const size_t Component) const;
 
 
@@ -301,11 +298,12 @@ public:
 	// Gets a component in the Vector.
 	inline Element GetComponent(const EAxis& Component) const;
 
-	// Converts the vector to a point.
-	inline SDL_Point ToPoint() const;
 
 
 	/// Conversions
+	
+	// Converts the vector to a point.
+	inline SDL_Point ToPoint() const;
 
 	// Converts this vector into a Vector of ints.
 	inline Vector<Size, int> ToInt() const;

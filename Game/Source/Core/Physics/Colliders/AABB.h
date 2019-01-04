@@ -57,6 +57,6 @@ public:
 	// Gets the Box Collider's minimum extents in the worldspace.
 	inline const SVector2 GetMinExtent() const { return Location.ToFloat() + ((Owner) ? Owner->GetWorldLocation().ToFloat() : 0.0f); }
 
-	// Gets the Box Colliders's maximum extents in the worldspace.
+	// Gets the Box Collider's maximum extents in the worldspace.
 	inline const SVector2 GetMaxExtent() const { return Extents.ToFloat() * (Scale * ((Owner) ? Owner->GetWorldScale() : 1.0f)) + ((Owner) ? Owner->GetWorldLocation().ToFloat() : 0.0f); }
 };

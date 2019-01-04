@@ -5,11 +5,15 @@
 class CSprite :public CImage
 {
 protected:
+	/// Properties
+
 	// A reference to the camera's transform.
 	STransform* Camera;
 
 
 public:
+	/// Constructors
+
 	// Constructor, Initiates a empty sprite.
 	CSprite(SDL_Renderer* InRenderer);
 
@@ -17,7 +21,10 @@ public:
 	// @param FilePath - The local file path to the image (starts at "Content/Sprites/").
 	CSprite(SDL_Renderer* InRenderer, const std::string FilePath);
 
-	// Draws the sprite onto the screen.
+
+	/// Functiosn
+
+	// Draws the Animation onto the screen.
 	virtual void Draw() override;
 
 

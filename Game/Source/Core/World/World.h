@@ -6,11 +6,7 @@
 #include "../Systems/Input.h"
 #include "../Physics/Physics.h"
 
-//#include "../../Game/Objects/Entities/Player.h"
-//#include "../../Game/Objects/Entities/Enemies/Enemy.h"
 #include "../../Game/Objects/Walls/Obstacle.h"
-//#include "../../Game/Objects/Goal.h"
-//#include "../../Game/Objects/Background.h"
 
 #include <vector>
 
@@ -49,7 +45,7 @@ private:
 	std::vector<class CWorldObject*> Objects;
 
 	//CObjectList List;
-	class CEntity* OBJ;
+	//class CEntity* OBJ;
 
 	// A value determining if the user is attempting to quit.
 	bool Quit;
@@ -74,6 +70,7 @@ private:
 
 
 public:
+	// The object that the user currently controls.
 	class CEntity* PossessedObject;
 
 

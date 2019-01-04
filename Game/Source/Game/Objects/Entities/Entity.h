@@ -14,7 +14,7 @@ private:
 	// Represents if the entity is dead.
 	bool Dead;
 
-	// The amount of time the Entity is invinsible after being attacked.
+	// The amount of time the Entity is invincible after being attacked.
 	float ImmuneTimer;
 	
 	// The direction this entity is currently moving in.
@@ -74,7 +74,7 @@ public:
 	virtual void ReadInput(CInput* Input) = 0;
 
 	// Possesses this entity.
-	void Posess();
+	void Possess();
 
 	// Damages the entity based on an inputted damage amount.
 	virtual float ApplyDamage(const float Damage) override;

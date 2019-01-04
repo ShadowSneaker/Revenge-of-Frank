@@ -145,7 +145,7 @@ void CEntity::Jump()
 }
 
 
-void CEntity::Posess()
+void CEntity::Possess()
 {
 	GetWorld()->PossessedObject = this;
 }

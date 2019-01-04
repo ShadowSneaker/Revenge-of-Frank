@@ -31,7 +31,7 @@ public:
 	// Circle to Circle collision
 	virtual bool CheckCollision(const CCircle* Other) const override;
 
-	// Ambigous collision check. Casts down to correct collider to check for collision.
+	// Ambiguous collision check. Casts down to correct collider to check for collision.
 	bool CheckCollision(const CCollider* Other) const;
 
 

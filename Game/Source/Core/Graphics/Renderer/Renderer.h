@@ -7,6 +7,8 @@
 
 
 // Renders In-game objects onto the screen.
+// Used as an interface between the SDL_Renderer and the ingame objects.
+// This class handles all the graphics.
 class CRenderer
 {
 private:
@@ -26,7 +28,7 @@ public:
 	/// Constructors
 
 	// Default Constructor.
-	CRenderer(CSDL_Setup* SDL_Setup, class CCamera* InCamera);
+	CRenderer(CSDL_Setup* SDL_Setup, CCamera* InCamera);
 
 	// Deconstructor
 	~CRenderer();
@@ -41,7 +43,7 @@ public:
 	void AddImage(CImage* Image);
 
 
-	// Creates an images and renders it onto the screen.
+	// Creates an image and renders it on the screen.
 	// @param FileName - The filepath leading to the Image bmp (starts from Content/Sprites).
 	// @return - Returns a reference to the created Image.
 	template <typename Type>
@@ -65,7 +67,7 @@ public:
 	}
 
 
-	// Creates an images and renders it onto the screen.
+	// Creates an image and renders it on the screen.
 	// @return - Returns a reference to the created Image.
 	template <typename Type>
 	Type* CreateImage()
