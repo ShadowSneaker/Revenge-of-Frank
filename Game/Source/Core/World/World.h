@@ -44,9 +44,6 @@ private:
 	// A list of all objects spawned in the world.
 	std::vector<class CWorldObject*> Objects;
 
-	//CObjectList List;
-	//class CEntity* OBJ;
-
 	// A value determining if the user is attempting to quit.
 	bool Quit;
 
